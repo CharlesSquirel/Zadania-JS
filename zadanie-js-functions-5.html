@@ -1,0 +1,340 @@
+<!--
+
+  Poziom kursu Frontend Developer: 1/4
+
+  Trening funkcji JavaScript związanych z operacjami na tablicach. Funkcja 7, 8, 9 jest bardzo trudna.
+
+  Linki do nauki:
+  1. https://znaczenia.com.pl/znaczenie-uuid-co-to-jest-pojecie-definicja-znaczenia/ - co to jest uuid?
+  2. https://www.youtube.com/watch?v=pfK16DU1sQs - funkcje w JS
+
+  Zadanie samodzielne: 
+  1. Wyboraź sobie, że jesteś Frontend Developerem pracującym / pracującą w portalu z ogłoszeniami mieszkaniowymi, np. Otodom. 
+  2. Masz bazę danych (tablica apartmentsList).
+  3. Twoim zadaniem jest przygotwać funkcje, które będą używane przez użytkowników portalu kiedy przeglądają oferty z mieszkaniami. Opis funkcji znajduje się pod tablicą. Funkcja 1 jest zrobiona dla przykładu jak należy wkonać zadanie.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const apartmentsList = [
+        {
+          uuid: "16d9a096-7240-11ed-a1eb-0242ac120002",
+          city: "Warszawa",
+          squareMeters: 30,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 12,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 16,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 4,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Michał Kamiński",
+            phone: 507991238,
+          },
+        },
+        {
+          uuid: "16d9a4a6-7240-11ed-a1eb-0242ac120002",
+          city: "Warszawa",
+          squareMeters: 50,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 15,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "sypialnia",
+              squareMeters: 10,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 5,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Michał Kamiński",
+            phone: 507991238,
+          },
+        },
+        {
+          uuid: "16d9a672-7240-11ed-a1eb-0242ac120002",
+          city: "Warszawa",
+          squareMeters: 45,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 15,
+              window: true,
+            },
+            {
+              name: "salon",
+              squareMeters: 22,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 8,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Kamil Borkowski",
+            phone: 608126588,
+          },
+        },
+        {
+          uuid: "16d9a816-7240-11ed-a1eb-0242ac120002",
+          city: "Kraków",
+          squareMeters: 52,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 15,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 29,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 8,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Kamil Borkowski",
+            phone: 608126588,
+          },
+        },
+        {
+          uuid: "16d9adca-7240-11ed-a1eb-0242ac120002",
+          city: "Kraków",
+          squareMeters: 106,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 16,
+              window: true,
+            },
+            {
+              name: "salon",
+              squareMeters: 40,
+              window: true,
+            },
+            {
+              name: "sypialnia 1",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "sypialnia 2",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 10,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Kamil Borkowski",
+            phone: 608126588,
+          },
+        },
+        {
+          uuid: "16d9afbe-7240-11ed-a1eb-0242ac120002",
+          city: "Wrocław",
+          squareMeters: 30,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 10,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 15,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 5,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Kamil Borkowski",
+            phone: 608126588,
+          },
+        },
+        {
+          uuid: "16d9b18a-7240-11ed-a1eb-0242ac120002",
+          city: "Wrocław",
+          squareMeters: 76,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 16,
+              window: true,
+            },
+            {
+              name: "salon",
+              squareMeters: 30,
+              window: true,
+            },
+            {
+              name: "sypialnia",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 10,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Milena Michalska",
+            phone: 507500989,
+          },
+        },
+        {
+          uuid: "16d9b464-7240-11ed-a1eb-0242ac120002",
+          city: "Wrocław",
+          squareMeters: 24,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 8,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 12,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 4,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Milena Michalska",
+            phone: 507500989,
+          },
+        },
+        {
+          uuid: "16d9b75c-7240-11ed-a1eb-0242ac120002",
+          city: "Poznań",
+          squareMeters: 84,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 14,
+              window: true,
+            },
+            {
+              name: "salon",
+              squareMeters: 30,
+              window: true,
+            },
+            {
+              name: "sypialnia",
+              squareMeters: 25,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 15,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Milena Michalska",
+            phone: 507500989,
+          },
+        },
+        {
+          uuid: "16d9b932-7240-11ed-a1eb-0242ac120002",
+          city: "Poznań",
+          squareMeters: 62,
+          rooms: [
+            {
+              name: "kuchnia",
+              squareMeters: 12,
+              window: false,
+            },
+            {
+              name: "salon",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "sypialnia",
+              squareMeters: 20,
+              window: true,
+            },
+            {
+              name: "łazienka",
+              squareMeters: 10,
+              window: false,
+            },
+          ],
+          broker: {
+            name: "Milena Michalska",
+            phone: 507500989,
+          },
+        },
+      ];
+
+      // Funkcja 1: Wyświetl wszystkie mieszkania znajdujące się w Warszawie
+      const filterApartmensByCityWarsaw = () => {
+        const result = apartmentsList.filter((apartment) => apartment.city === "Warszawa");
+        return result;
+      };
+
+      console.log("Funkcja 1: ", filterApartmensByCityWarsaw());
+
+      // Funkcja 2: Wyświetl wszystkie mieszkania znajdujące się w Krakowie lub we Wrocławiu
+      // Funkcja 3: Wyświetl wszystkie mieszkania oprócz mieszakań z Poznania
+      // Funkcja 4: Wyświetl wszystkie mieszkania oprócz mieszakań z Poznania poniżej 40m2. Jeśli nie ma takiegi mieszkań to wyświetl informację "nie ma mieszkań spełnijących ten warunek".
+      // Funkcja 5: Wyświetl wszystkie mieszkania z Krakowa, których kuchnia przekracza 10 metrów kwadratowych.
+      // Funkcja 6: Wyświetl wszystkie mieszkania, które mają salon i sypialnię.
+      // Funkcja 7. Wyświetl listę brokerów. Brokerzy nie mogą się powtarzać.
+      // Funkcja 8: Przekształć listę tak aby do brokerów były przypisane ich mieszkania. Aktualnie do mieszkań przypisani są brokerzy. Użyj funkcji reduce. Nie modyfikuj bazy danych.
+      // Funkcja 9: Wyświetl łączną liczbę metrów kwadratowych wszystkich kuchni, które mają okna.
+    </script>
+  </body>
+</html>
