@@ -321,7 +321,9 @@
 
       // Funkcja 1: Wyświetl wszystkie mieszkania znajdujące się w Warszawie
       const filterApartmensByCityWarsaw = () => {
-        const result = apartmentsList.filter((apartment) => apartment.city === "Warszawa");
+        const result = apartmentsList.filter(
+          (apartment) => apartment.city === "Warszawa"
+        );
         return result;
       };
 
@@ -333,8 +335,41 @@
       // Funkcja 5: Wyświetl wszystkie mieszkania z Krakowa, których kuchnia przekracza 10 metrów kwadratowych.
       // Funkcja 6: Wyświetl wszystkie mieszkania, które mają salon i sypialnię.
       // Funkcja 7. Wyświetl listę brokerów. Brokerzy nie mogą się powtarzać.
+      const filterBrokers = () => {
+        let result = apartmentsList.map((apartment) => apartment.broker);
+        let arr = [result[0]];
+        for (let i = 1; i < result.length; i++) {
+          if (!(result[i].name === arr[arr.length - 1].name)) {
+            arr.push(result[i]);
+          }
+        }
+        return arr;
+      };
+
+      console.log("Funkcja 7: ", filterBrokers());
       // Funkcja 8: Przekształć listę tak aby do brokerów były przypisane ich mieszkania. Aktualnie do mieszkań przypisani są brokerzy. Użyj funkcji reduce. Nie modyfikuj bazy danych.
+      //       const filter = () => {
+      // let result = apartmentsList.reduce((acc,curr) => {},[])
+      //         return result;
+      //       };
+
+      //       console.log("Funkcja 8: ", filter());
       // Funkcja 9: Wyświetl łączną liczbę metrów kwadratowych wszystkich kuchni, które mają okna.
+      const filterKitchenMeters = () => {
+        let result = apartmentsList
+          .filter((apartment) =>
+            apartment.rooms.some(
+              (room) => room.name === "kuchnia" && room.window === true
+            )
+          )
+          .map((e) => e.rooms)
+          .reduce((acc, curr) => acc.concat(curr))
+          .filter((e) => e.name === "kuchnia")
+          .map((e) => e.squareMeters);
+        return result.reduce((a, b) => a + b) / result.length;
+      };
+
+      console.log("Funkcja 9: ", filterKitchenMeters());
     </script>
   </body>
 </html>
